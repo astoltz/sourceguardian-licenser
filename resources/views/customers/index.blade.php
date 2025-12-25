@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($customers as $customer)
+            @forelse ($customers as $customer)
                 <tr>
                     <td><a href="{{ route('web.customers.show', $customer) }}">{{ $customer->display_name }}</a></td>
                     <td>{{ $customer->enabled ? 'Yes' : 'No' }}</td>
@@ -27,7 +27,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3" class="text-center">No customers found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 

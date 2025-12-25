@@ -59,7 +59,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($licenses as $license)
+            @forelse ($licenses as $license)
                 <tr>
                     <td><a href="{{ route('web.licenses.show', $license) }}">{{ $license->display_name }}</a></td>
                     <td><a href="{{ route('web.customers.show', $license->customer) }}">{{ $license->customer->display_name }}</a></td>
@@ -70,7 +70,11 @@
                         <a href="{{ route('web.licenses.edit', $license) }}" class="btn btn-sm btn-warning">Edit</a>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="6" class="text-center">No licenses found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Project Model
@@ -89,7 +90,10 @@ class Project extends Model
      */
     public function projectConstants(): HasMany
     {
-        return $this->hasMany(ProjectConstant::class)->orderByRaw('LOWER(key)');
+        // Use the grammar to wrap the column name correctly for the underlying database
+        $grammar = $this->getConnection()->getQueryGrammar();
+        $column = $grammar->wrap('key');
+        return $this->hasMany(ProjectConstant::class)->orderByRaw("LOWER($column)");
     }
 
     /**

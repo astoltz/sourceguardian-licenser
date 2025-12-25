@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Variation Model
@@ -47,7 +48,9 @@ class Variation extends Model
      */
     public function variationConstants(): HasMany
     {
-        return $this->hasMany(VariationConstant::class)->orderByRaw('LOWER(key)');
+        $grammar = $this->getConnection()->getQueryGrammar();
+        $column = $grammar->wrap('key');
+        return $this->hasMany(VariationConstant::class)->orderByRaw("LOWER($column)");
     }
 
     /**

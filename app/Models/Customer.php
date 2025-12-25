@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Customer Model
@@ -36,7 +37,9 @@ class Customer extends Model
      */
     public function customerConstants(): HasMany
     {
-        return $this->hasMany(CustomerConstant::class)->orderByRaw('LOWER(key)');
+        $grammar = $this->getConnection()->getQueryGrammar();
+        $column = $grammar->wrap('key');
+        return $this->hasMany(CustomerConstant::class)->orderByRaw("LOWER($column)");
     }
 
     /**

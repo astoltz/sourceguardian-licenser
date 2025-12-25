@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($projects as $project)
+            @forelse ($projects as $project)
                 <tr>
                     <td><a href="{{ route('web.projects.show', $project) }}">{{ $project->display_name }}</a></td>
                     <td><a href="{{ route('web.projects.versions.index', $project) }}">{{ $project->versions_count }}</a></td>
@@ -29,7 +29,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4" class="text-center">No projects found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 

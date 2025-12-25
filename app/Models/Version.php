@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Version Model
@@ -55,7 +56,9 @@ class Version extends Model
      */
     public function versionConstants(): HasMany
     {
-        return $this->hasMany(VersionConstant::class)->orderByRaw('LOWER(key)');
+        $grammar = $this->getConnection()->getQueryGrammar();
+        $column = $grammar->wrap('key');
+        return $this->hasMany(VersionConstant::class)->orderByRaw("LOWER($column)");
     }
 
     /**

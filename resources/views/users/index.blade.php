@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+            @forelse ($users as $user)
                 <tr>
                     <td><a href="{{ route('web.users.show', $user) }}">{{ $user->name }}</a></td>
                     <td>{{ $user->email }}</td>
@@ -31,7 +31,11 @@
                         @endif
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="4" class="text-center">No users found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 

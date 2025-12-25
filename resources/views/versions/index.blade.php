@@ -1,6 +1,9 @@
 <x-layout :title="'Versions for ' . $project->display_name">
-    <h1>Versions for <a href="{{ route('web.projects.show', $project) }}">{{ $project->display_name }}</a></h1>
-    <a href="{{ route('web.projects.versions.create', $project) }}" class="btn btn-primary mb-3">Create Version</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Versions for <a href="{{ route('web.projects.show', $project) }}">{{ $project->display_name }}</a></h1>
+        <a href="{{ route('web.projects.versions.create', $project) }}" class="btn btn-primary">Create Version</a>
+    </div>
+    <p class="text-muted">Versions represent specific releases of your project.</p>
 
     <table class="table">
         <thead>
@@ -11,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($versions as $version)
+            @forelse ($versions as $version)
                 <tr>
                     <td><a href="{{ route('web.projects.versions.show', [$project, $version]) }}">{{ $version->display_name }}</a></td>
                     <td>{{ $version->enabled ? 'Yes' : 'No' }}</td>
@@ -24,7 +27,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3" class="text-center">No versions found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 

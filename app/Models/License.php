@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\DB;
 
 /**
  * License Model
@@ -99,7 +100,9 @@ class License extends Model
      */
     public function licenseConstants(): HasMany
     {
-        return $this->hasMany(LicenseConstant::class)->orderByRaw('LOWER(key)');
+        $grammar = $this->getConnection()->getQueryGrammar();
+        $column = $grammar->wrap('key');
+        return $this->hasMany(LicenseConstant::class)->orderByRaw("LOWER($column)");
     }
 
     /**
@@ -115,7 +118,7 @@ class License extends Model
      */
     public function licenseDomains(): HasMany
     {
-        return $this->hasMany(LicenseDomain::class);
+        return $this->hasMany(LicenseDomain::class)->orderBy('domain');
     }
 
     /**
@@ -123,6 +126,7 @@ class License extends Model
      */
     public function licenseIps(): HasMany
     {
+        // We'll sort IPs in PHP to handle CIDR/numeric sorting correctly
         return $this->hasMany(LicenseIp::class);
     }
 
@@ -131,7 +135,7 @@ class License extends Model
      */
     public function licenseMacs(): HasMany
     {
-        return $this->hasMany(LicenseMac::class);
+        return $this->hasMany(LicenseMac::class)->orderBy('mac');
     }
 
     /**

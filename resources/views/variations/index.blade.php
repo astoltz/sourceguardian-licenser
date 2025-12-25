@@ -1,6 +1,9 @@
 <x-layout :title="'Variations for ' . $project->display_name">
-    <h1>Variations for <a href="{{ route('web.projects.show', $project) }}">{{ $project->display_name }}</a></h1>
-    <a href="{{ route('web.projects.variations.create', $project) }}" class="btn btn-primary mb-3">Create Variation</a>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Variations for <a href="{{ route('web.projects.show', $project) }}">{{ $project->display_name }}</a></h1>
+        <a href="{{ route('web.projects.variations.create', $project) }}" class="btn btn-primary">Create Variation</a>
+    </div>
+    <p class="text-muted">Variations represent different editions of your project (e.g., Standard, Pro).</p>
 
     <table class="table">
         <thead>
@@ -11,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($variations as $variation)
+            @forelse ($variations as $variation)
                 <tr>
                     <td><a href="{{ route('web.projects.variations.show', [$project, $variation]) }}">{{ $variation->display_name }}</a></td>
                     <td>{{ $variation->enabled ? 'Yes' : 'No' }}</td>
@@ -24,7 +27,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="3" class="text-center">No variations found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 
