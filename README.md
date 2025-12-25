@@ -60,32 +60,38 @@ A robust, web-based license management system for SourceGuardian-protected PHP a
     ```
     If `licgen` is in your system PATH, you can set it to just `licgen`.
 
-7.  **Run Migrations and Seeders:**
-    This will create the database tables and populate them with sample data (including a default admin user).
-    ```bash
-    php artisan migrate:fresh --seed
-    ```
-
-8.  **Build Assets:**
+7.  **Build Assets:**
     ```bash
     npm run build
     ```
 
 ## Usage
 
-### Development Server
+### Development Setup
 
-To start the local development server:
+For development, you can populate the database with a large amount of sample data, including a default admin user.
 
-```bash
-php artisan serve
-```
+1.  **Run Migrations and Seeders:**
+    ```bash
+    php artisan migrate:fresh --seed
+    ```
 
-You can access the application at `http://127.0.0.1:8000`.
+2.  **Log In:**
+    You can now log in with the default credentials:
+    *   **Email:** `admin@example.com`
+    *   **Password:** `secret`
 
-**Default Login:**
-*   **Email:** `admin@example.com`
-*   **Password:** `secret`
+### Production Setup
+
+For a clean production installation:
+
+1.  **Run Migrations:**
+    ```bash
+    php artisan migrate
+    ```
+
+2.  **Create First Admin:**
+    Navigate to your application's URL (e.g., `http://your-domain.com`). You will be automatically redirected to a registration page to create the first administrator account. Once created, registration will be disabled.
 
 ### License Generation
 

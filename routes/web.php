@@ -1,14 +1,26 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Web\CustomerController;
 use App\Http\Controllers\Web\LicenseController;
 use App\Http\Controllers\Web\ProjectController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\VariationController;
 use App\Http\Controllers\Web\VersionController;
+use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    // Use cache to avoid hitting the DB on every request to the homepage.
+    $userExists = Cache::rememberForever('user_exists', function () {
+        return User::exists();
+    });
+
+    if (!$userExists) {
+        return redirect()->route('register');
+    }
+
     return auth()->check() ? redirect()->route('dashboard') : redirect()->route('login');
 });
 
@@ -28,7 +40,10 @@ Route::get('/dashboard', function () {
     return redirect()->route('web.projects.index');
 })->middleware(['auth'])->name('dashboard');
 
-// Simple Auth Routes
+// Auth Routes
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');

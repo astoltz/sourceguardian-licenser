@@ -13,6 +13,15 @@
     </div>
     <p>Project: <a href="{{ route('web.projects.show', $project) }}">{{ $project->display_name }}</a></p>
 
+    <div class="card mb-4">
+        <div class="card-header">Overrides</div>
+        <div class="card-body">
+            <p><strong>Override Project ID:</strong> <code>{{ $version->override_project_id ?? 'Not set' }}</code></p>
+            <p><strong>Override Project Key:</strong> <code>{{ $version->override_project_key ? '********' : 'Not set' }}</code></p>
+            <p><strong>Override License Filename:</strong> {{ $version->override_license_filename ?? 'Not set' }}</p>
+        </div>
+    </div>
+
     @if($version->versionConstants->isNotEmpty())
         <div class="card mb-4">
             <div class="card-header">Constants</div>

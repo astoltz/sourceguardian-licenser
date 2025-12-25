@@ -1,5 +1,11 @@
 <x-layout title="Edit Variation">
-    <h1>Edit Variation for {{ $project->display_name }}</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Edit Variation</h1>
+        <div>
+            <a href="{{ route('web.projects.variations.show', [$project, $variation]) }}" class="btn btn-info">View Variation</a>
+            <a href="{{ route('web.projects.variations.index', $project) }}" class="btn btn-secondary">Back to Variations</a>
+        </div>
+    </div>
 
     <form action="{{ route('web.projects.variations.update', [$project, $variation]) }}" method="POST">
         @csrf

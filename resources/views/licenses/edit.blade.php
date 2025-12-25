@@ -1,5 +1,11 @@
 <x-layout title="Edit License">
-    <h1>Edit License</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Edit License</h1>
+        <div>
+            <a href="{{ route('web.licenses.show', $license) }}" class="btn btn-info">View License</a>
+            <a href="{{ route('web.licenses.index') }}" class="btn btn-secondary">Back to Licenses</a>
+        </div>
+    </div>
 
     <form action="{{ route('web.licenses.update', $license) }}" method="POST">
         @csrf

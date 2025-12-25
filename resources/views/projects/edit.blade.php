@@ -1,5 +1,11 @@
 <x-layout title="Edit Project">
-    <h1>Edit Project</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Edit Project</h1>
+        <div>
+            <a href="{{ route('web.projects.show', $project) }}" class="btn btn-info">View Project</a>
+            <a href="{{ route('web.projects.index') }}" class="btn btn-secondary">Back to Projects</a>
+        </div>
+    </div>
 
     <form action="{{ route('web.projects.update', $project) }}" method="POST">
         @csrf
@@ -25,6 +31,12 @@
                     <div class="form-text">The secret key for this project.</div>
                 </div>
             </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="license_filename" class="form-label">Default License Filename</label>
+            <input type="text" class="form-control" id="license_filename" name="license_filename" value="{{ $project->license_filename }}" placeholder="license.lic">
+            <div class="form-text">The default filename for downloaded license files.</div>
         </div>
 
         <div class="mb-3 form-check">

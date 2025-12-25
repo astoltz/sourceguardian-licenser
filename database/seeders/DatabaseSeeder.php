@@ -10,18 +10,22 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+     *
+     * This seeder is intended for development environments to populate the
+     * database with a large amount of sample data for testing pagination
+     * and other features.
      */
     public function run(): void
     {
-        // Create a consistent admin user
+        // Create a consistent admin user for development
         User::factory()->create([
             'name' => 'SourceGuardian Admin',
             'email' => 'admin@example.com',
             'password' => Hash::make('secret'),
         ]);
 
-        // Create a variety of other users
-        User::factory(10)->create();
+        // Create 25 random users to test pagination
+        User::factory(25)->create();
 
         // Run the ProjectSeeder to create a variety of projects and their related data
         $this->call(ProjectSeeder::class);

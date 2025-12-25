@@ -27,6 +27,12 @@
             </div>
         </div>
 
+        <div class="mb-3">
+            <label for="license_filename" class="form-label">Default License Filename</label>
+            <input type="text" class="form-control" id="license_filename" name="license_filename" placeholder="license.lic">
+            <div class="form-text">The default filename for downloaded license files.</div>
+        </div>
+
         <div class="mb-3 form-check">
             <input type="hidden" name="enabled" value="0">
             <input type="checkbox" class="form-check-input" id="enabled" name="enabled" value="1" checked>

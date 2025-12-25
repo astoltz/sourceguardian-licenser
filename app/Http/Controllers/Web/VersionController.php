@@ -50,6 +50,9 @@ class VersionController extends Controller
         $validated = $request->validate([
             'display_name' => 'required|string|max:255',
             'enabled' => 'sometimes|boolean',
+            'override_project_id' => 'nullable|string',
+            'override_project_key' => 'nullable|string',
+            'override_license_filename' => 'nullable|string|max:255',
             'version_constants' => 'sometimes|array',
             'version_header_texts' => 'sometimes|array',
         ]);
@@ -105,6 +108,9 @@ class VersionController extends Controller
         $validated = $request->validate([
             'display_name' => 'required|string|max:255',
             'enabled' => 'boolean',
+            'override_project_id' => 'nullable|string',
+            'override_project_key' => 'nullable|string',
+            'override_license_filename' => 'nullable|string|max:255',
             'version_constants' => 'sometimes|array',
             'version_header_texts' => 'sometimes|array',
         ]);

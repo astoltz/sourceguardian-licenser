@@ -1,5 +1,11 @@
 <x-layout title="Edit Customer">
-    <h1>Edit Customer</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1>Edit Customer</h1>
+        <div>
+            <a href="{{ route('web.customers.show', $customer) }}" class="btn btn-info">View Customer</a>
+            <a href="{{ route('web.customers.index') }}" class="btn btn-secondary">Back to Customers</a>
+        </div>
+    </div>
 
     <form action="{{ route('web.customers.update', $customer) }}" method="POST">
         @csrf
