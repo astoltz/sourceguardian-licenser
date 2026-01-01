@@ -132,6 +132,32 @@ class LicenseService
         Log::info('Executing licgen command: ' . implode(' ', $command));
 
         $process = $this->processFactory->create($command);
+
+        // Pass environment variables to the process
+        $env = $process->getEnv();
+        if (empty($env)) {
+            $env = getenv();
+        }
+
+        if (!is_array($env)) {
+            $env = [];
+        }
+
+        // Pass through any environment variables starting with LICGEN_
+        $sources = [getenv(), $_SERVER, $_ENV];
+        foreach ($sources as $source) {
+            if (!is_array($source)) continue;
+            foreach ($source as $key => $value) {
+                if (is_string($key) && str_starts_with($key, 'LICGEN_')) {
+                    $env[$key] = $value;
+                }
+            }
+        }
+
+        if (!empty($env)) {
+            $process->setEnv($env);
+        }
+
         $process->run();
 
         // Clean up text file immediately
