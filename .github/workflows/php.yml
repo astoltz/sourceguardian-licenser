@@ -35,8 +35,8 @@ jobs:
     - name: Convert Language .PHP files to JSON for encoding complexity
       run: php encoder/convert_lang_to_json.php
 
-    - name: Apply MessageSelector Refactoring
-      run: patch -p0 < encoder/MessageSelector.diff
+    - name: Patch Translation/MessageSelector.php for encoding complexity
+      run: patch -p0 vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php < encoder/MessageSelector.diff
 
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache

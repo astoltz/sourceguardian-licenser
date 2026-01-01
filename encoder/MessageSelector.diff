@@ -1,6 +1,6 @@
---- vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php	2024-05-22 00:00:00.000000000 +0000
-+++ vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php	2024-05-22 00:00:00.000000000 +0000
-@@ -107,243 +107,63 @@
+--- MessageSelector.original.php	2026-01-01 12:50:26.443962200 -0600
++++ MessageSelector.php	2026-01-01 12:48:57.534278100 -0600
+@@ -109,304 +109,66 @@
       */
      public function getPluralIndex($locale, $number)
      {
@@ -30,6 +30,7 @@
 -            case 'th':
 -            case 'th_TH':
 -            case 'tr':
+-            case 'tr_CY':
 -            case 'tr_TR':
 -            case 'vi':
 -            case 'vi_VN':
@@ -82,7 +83,7 @@
 -            case 'en_ZM':
 -            case 'en_ZW':
 -            case 'eo':
--            case 'eo_XX':
+-            case 'eo_US':
 -            case 'es':
 -            case 'es_AR':
 -            case 'es_BO':
@@ -294,17 +295,18 @@
 -            case 'ar_QA':
 -            case 'ar_SA':
 -            case 'ar_SD':
+-            case 'ar_SS':
 -            case 'ar_SY':
 -            case 'ar_TN':
 -            case 'ar_YE':
 -                return ($number == 0) ? 0 : (($number == 1) ? 1 : (($number == 2) ? 2 : ((($number % 100 >= 3) && ($number % 100 <= 10)) ? 3 : ((($number % 100 >= 11) && ($number % 100 <= 99)) ? 4 : 5))));
 -            default:
 -                return 0;
-+        if ($locale === 'az' || $locale === 'az_AZ' || $locale === 'bo' || $locale === 'bo_CN' || $locale === 'bo_IN' || $locale === 'dz' || $locale === 'dz_BT' || $locale === 'id' || $locale === 'id_ID' || $locale === 'ja' || $locale === 'ja_JP' || $locale === 'jv' || $locale === 'ka' || $locale === 'ka_GE' || $locale === 'km' || $locale === 'km_KH' || $locale === 'kn' || $locale === 'kn_IN' || $locale === 'ko' || $locale === 'ko_KR' || $locale === 'ms' || $locale === 'ms_MY' || $locale === 'th' || $locale === 'th_TH' || $locale === 'tr' || $locale === 'tr_TR' || $locale === 'vi' || $locale === 'vi_VN' || $locale === 'zh' || $locale === 'zh_CN' || $locale === 'zh_HK' || $locale === 'zh_SG' || $locale === 'zh_TW') {
++        if ($locale === 'az' || $locale === 'az_AZ' || $locale === 'bo' || $locale === 'bo_CN' || $locale === 'bo_IN' || $locale === 'dz' || $locale === 'dz_BT' || $locale === 'id' || $locale === 'id_ID' || $locale === 'ja' || $locale === 'ja_JP' || $locale === 'jv' || $locale === 'ka' || $locale === 'ka_GE' || $locale === 'km' || $locale === 'km_KH' || $locale === 'kn' || $locale === 'kn_IN' || $locale === 'ko' || $locale === 'ko_KR' || $locale === 'ms' || $locale === 'ms_MY' || $locale === 'th' || $locale === 'th_TH' || $locale === 'tr' || $locale === 'tr_CY' || $locale === 'tr_TR' || $locale === 'vi' || $locale === 'vi_VN' || $locale === 'zh' || $locale === 'zh_CN' || $locale === 'zh_HK' || $locale === 'zh_SG' || $locale === 'zh_TW') {
 +            return 0;
-+        }
+         }
 +
-+        if ($locale === 'af' || $locale === 'af_ZA' || $locale === 'bn' || $locale === 'bn_BD' || $locale === 'bn_IN' || $locale === 'bg' || $locale === 'bg_BG' || $locale === 'ca' || $locale === 'ca_AD' || $locale === 'ca_ES' || $locale === 'ca_FR' || $locale === 'ca_IT' || $locale === 'da' || $locale === 'da_DK' || $locale === 'de' || $locale === 'de_AT' || $locale === 'de_BE' || $locale === 'de_CH' || $locale === 'de_DE' || $locale === 'de_LI' || $locale === 'de_LU' || $locale === 'el' || $locale === 'el_CY' || $locale === 'el_GR' || $locale === 'en' || $locale === 'en_AG' || $locale === 'en_AU' || $locale === 'en_BW' || $locale === 'en_CA' || $locale === 'en_DK' || $locale === 'en_GB' || $locale === 'en_HK' || $locale === 'en_IE' || $locale === 'en_IN' || $locale === 'en_NG' || $locale === 'en_NZ' || $locale === 'en_PH' || $locale === 'en_SG' || $locale === 'en_US' || $locale === 'en_ZA' || $locale === 'en_ZM' || $locale === 'en_ZW' || $locale === 'eo' || $locale === 'eo_XX' || $locale === 'es' || $locale === 'es_AR' || $locale === 'es_BO' || $locale === 'es_CL' || $locale === 'es_CO' || $locale === 'es_CR' || $locale === 'es_CU' || $locale === 'es_DO' || $locale === 'es_EC' || $locale === 'es_ES' || $locale === 'es_GT' || $locale === 'es_HN' || $locale === 'es_MX' || $locale === 'es_NI' || $locale === 'es_PA' || $locale === 'es_PE' || $locale === 'es_PR' || $locale === 'es_PY' || $locale === 'es_SV' || $locale === 'es_US' || $locale === 'es_UY' || $locale === 'es_VE' || $locale === 'et' || $locale === 'et_EE' || $locale === 'eu' || $locale === 'eu_ES' || $locale === 'eu_FR' || $locale === 'fa' || $locale === 'fa_IR' || $locale === 'fi' || $locale === 'fi_FI' || $locale === 'fo' || $locale === 'fo_FO' || $locale === 'fur' || $locale === 'fur_IT' || $locale === 'fy' || $locale === 'fy_DE' || $locale === 'fy_NL' || $locale === 'gl' || $locale === 'gl_ES' || $locale === 'gu' || $locale === 'gu_IN' || $locale === 'ha' || $locale === 'ha_NG' || $locale === 'he' || $locale === 'he_IL' || $locale === 'hu' || $locale === 'hu_HU' || $locale === 'is' || $locale === 'is_IS' || $locale === 'it' || $locale === 'it_CH' || $locale === 'it_IT' || $locale === 'ku' || $locale === 'ku_TR' || $locale === 'lb' || $locale === 'lb_LU' || $locale === 'ml' || $locale === 'ml_IN' || $locale === 'mn' || $locale === 'mn_MN' || $locale === 'mr' || $locale === 'mr_IN' || $locale === 'nah' || $locale === 'nb' || $locale === 'nb_NO' || $locale === 'ne' || $locale === 'ne_NP' || $locale === 'nl' || $locale === 'nl_AW' || $locale === 'nl_BE' || $locale === 'nl_NL' || $locale === 'nn' || $locale === 'nn_NO' || $locale === 'no' || $locale === 'om' || $locale === 'om_ET' || $locale === 'om_KE' || $locale === 'or' || $locale === 'or_IN' || $locale === 'pa' || $locale === 'pa_IN' || $locale === 'pa_PK' || $locale === 'pap' || $locale === 'pap_AN' || $locale === 'pap_AW' || $locale === 'pap_CW' || $locale === 'ps' || $locale === 'ps_AF' || $locale === 'pt' || $locale === 'pt_BR' || $locale === 'pt_PT' || $locale === 'so' || $locale === 'so_DJ' || $locale === 'so_ET' || $locale === 'so_KE' || $locale === 'so_SO' || $locale === 'sq' || $locale === 'sq_AL' || $locale === 'sq_MK' || $locale === 'sv' || $locale === 'sv_FI' || $locale === 'sv_SE' || $locale === 'sw' || $locale === 'sw_KE' || $locale === 'sw_TZ' || $locale === 'ta' || $locale === 'ta_IN' || $locale === 'ta_LK' || $locale === 'te' || $locale === 'te_IN' || $locale === 'tk' || $locale === 'tk_TM' || $locale === 'ur' || $locale === 'ur_IN' || $locale === 'ur_PK' || $locale === 'zu' || $locale === 'zu_ZA') {
++        if ($locale === 'af' || $locale === 'af_ZA' || $locale === 'bn' || $locale === 'bn_BD' || $locale === 'bn_IN' || $locale === 'bg' || $locale === 'bg_BG' || $locale === 'ca' || $locale === 'ca_AD' || $locale === 'ca_ES' || $locale === 'ca_FR' || $locale === 'ca_IT' || $locale === 'da' || $locale === 'da_DK' || $locale === 'de' || $locale === 'de_AT' || $locale === 'de_BE' || $locale === 'de_CH' || $locale === 'de_DE' || $locale === 'de_LI' || $locale === 'de_LU' || $locale === 'el' || $locale === 'el_CY' || $locale === 'el_GR' || $locale === 'en' || $locale === 'en_AG' || $locale === 'en_AU' || $locale === 'en_BW' || $locale === 'en_CA' || $locale === 'en_DK' || $locale === 'en_GB' || $locale === 'en_HK' || $locale === 'en_IE' || $locale === 'en_IN' || $locale === 'en_NG' || $locale === 'en_NZ' || $locale === 'en_PH' || $locale === 'en_SG' || $locale === 'en_US' || $locale === 'en_ZA' || $locale === 'en_ZM' || $locale === 'en_ZW' || $locale === 'eo' || $locale === 'eo_US' || $locale === 'es' || $locale === 'es_AR' || $locale === 'es_BO' || $locale === 'es_CL' || $locale === 'es_CO' || $locale === 'es_CR' || $locale === 'es_CU' || $locale === 'es_DO' || $locale === 'es_EC' || $locale === 'es_ES' || $locale === 'es_GT' || $locale === 'es_HN' || $locale === 'es_MX' || $locale === 'es_NI' || $locale === 'es_PA' || $locale === 'es_PE' || $locale === 'es_PR' || $locale === 'es_PY' || $locale === 'es_SV' || $locale === 'es_US' || $locale === 'es_UY' || $locale === 'es_VE' || $locale === 'et' || $locale === 'et_EE' || $locale === 'eu' || $locale === 'eu_ES' || $locale === 'eu_FR' || $locale === 'fa' || $locale === 'fa_IR' || $locale === 'fi' || $locale === 'fi_FI' || $locale === 'fo' || $locale === 'fo_FO' || $locale === 'fur' || $locale === 'fur_IT' || $locale === 'fy' || $locale === 'fy_DE' || $locale === 'fy_NL' || $locale === 'gl' || $locale === 'gl_ES' || $locale === 'gu' || $locale === 'gu_IN' || $locale === 'ha' || $locale === 'ha_NG' || $locale === 'he' || $locale === 'he_IL' || $locale === 'hu' || $locale === 'hu_HU' || $locale === 'is' || $locale === 'is_IS' || $locale === 'it' || $locale === 'it_CH' || $locale === 'it_IT' || $locale === 'ku' || $locale === 'ku_TR' || $locale === 'lb' || $locale === 'lb_LU' || $locale === 'ml' || $locale === 'ml_IN' || $locale === 'mn' || $locale === 'mn_MN' || $locale === 'mr' || $locale === 'mr_IN' || $locale === 'nah' || $locale === 'nb' || $locale === 'nb_NO' || $locale === 'ne' || $locale === 'ne_NP' || $locale === 'nl' || $locale === 'nl_AW' || $locale === 'nl_BE' || $locale === 'nl_NL' || $locale === 'nn' || $locale === 'nn_NO' || $locale === 'no' || $locale === 'om' || $locale === 'om_ET' || $locale === 'om_KE' || $locale === 'or' || $locale === 'or_IN' || $locale === 'pa' || $locale === 'pa_IN' || $locale === 'pa_PK' || $locale === 'pap' || $locale === 'pap_AN' || $locale === 'pap_AW' || $locale === 'pap_CW' || $locale === 'ps' || $locale === 'ps_AF' || $locale === 'pt' || $locale === 'pt_BR' || $locale === 'pt_PT' || $locale === 'so' || $locale === 'so_DJ' || $locale === 'so_ET' || $locale === 'so_KE' || $locale === 'so_SO' || $locale === 'sq' || $locale === 'sq_AL' || $locale === 'sq_MK' || $locale === 'sv' || $locale === 'sv_FI' || $locale === 'sv_SE' || $locale === 'sw' || $locale === 'sw_KE' || $locale === 'sw_TZ' || $locale === 'ta' || $locale === 'ta_IN' || $locale === 'ta_LK' || $locale === 'te' || $locale === 'te_IN' || $locale === 'tk' || $locale === 'tk_TM' || $locale === 'ur' || $locale === 'ur_IN' || $locale === 'ur_PK' || $locale === 'zu' || $locale === 'zu_ZA') {
 +            return ($number == 1) ? 0 : 1;
 +        }
 +
@@ -356,9 +358,9 @@
 +            return ($number == 1) ? 0 : ((($number == 0) || (($number % 100 > 0) && ($number % 100 < 20))) ? 1 : 2);
 +        }
 +
-+        if ($locale === 'ar' || $locale === 'ar_AE' || $locale === 'ar_BH' || $locale === 'ar_DZ' || $locale === 'ar_EG' || $locale === 'ar_IN' || $locale === 'ar_IQ' || $locale === 'ar_JO' || $locale === 'ar_KW' || $locale === 'ar_LB' || $locale === 'ar_LY' || $locale === 'ar_MA' || $locale === 'ar_OM' || $locale === 'ar_QA' || $locale === 'ar_SA' || $locale === 'ar_SD' || $locale === 'ar_SY' || $locale === 'ar_TN' || $locale === 'ar_YE') {
++        if ($locale === 'ar' || $locale === 'ar_AE' || $locale === 'ar_BH' || $locale === 'ar_DZ' || $locale === 'ar_EG' || $locale === 'ar_IN' || $locale === 'ar_IQ' || $locale === 'ar_JO' || $locale === 'ar_KW' || $locale === 'ar_LB' || $locale === 'ar_LY' || $locale === 'ar_MA' || $locale === 'ar_OM' || $locale === 'ar_QA' || $locale === 'ar_SA' || $locale === 'ar_SD' || $locale === 'ar_SS' || $locale === 'ar_SY' || $locale === 'ar_TN' || $locale === 'ar_YE') {
 +            return ($number == 0) ? 0 : (($number == 1) ? 1 : (($number == 2) ? 2 : ((($number % 100 >= 3) && ($number % 100 <= 10)) ? 3 : ((($number % 100 >= 11) && ($number % 100 <= 99)) ? 4 : 5))));
-         }
++        }
 +
 +        return 0;
      }
