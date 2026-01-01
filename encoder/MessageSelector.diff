@@ -1,6 +1,6 @@
---- vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php
-+++ vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php
-@@ -107,188 +107,75 @@
+--- vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php	2024-05-22 00:00:00.000000000 +0000
++++ vendor/laravel/framework/src/Illuminate/Translation/MessageSelector.php	2024-05-22 00:00:00.000000000 +0000
+@@ -107,243 +107,63 @@
       */
      public function getPluralIndex($locale, $number)
      {
@@ -30,7 +30,6 @@
 -            case 'th':
 -            case 'th_TH':
 -            case 'tr':
--            case 'tr_CY':
 -            case 'tr_TR':
 -            case 'vi':
 -            case 'vi_VN':
@@ -83,7 +82,7 @@
 -            case 'en_ZM':
 -            case 'en_ZW':
 -            case 'eo':
--            case 'eo_US':
+-            case 'eo_XX':
 -            case 'es':
 -            case 'es_AR':
 -            case 'es_BO':
@@ -295,84 +294,72 @@
 -            case 'ar_QA':
 -            case 'ar_SA':
 -            case 'ar_SD':
--            case 'ar_SS':
 -            case 'ar_SY':
 -            case 'ar_TN':
 -            case 'ar_YE':
 -                return ($number == 0) ? 0 : (($number == 1) ? 1 : (($number == 2) ? 2 : ((($number % 100 >= 3) && ($number % 100 <= 10)) ? 3 : ((($number % 100 >= 11) && ($number % 100 <= 99)) ? 4 : 5))));
 -            default:
 -                return 0;
--        }
-+        $rules = [
-+            'az' => 0, 'az_AZ' => 0, 'bo' => 0, 'bo_CN' => 0, 'bo_IN' => 0, 'dz' => 0, 'dz_BT' => 0,
-+            'id' => 0, 'id_ID' => 0, 'ja' => 0, 'ja_JP' => 0, 'jv' => 0, 'ka' => 0, 'ka_GE' => 0,
-+            'km' => 0, 'km_KH' => 0, 'kn' => 0, 'kn_IN' => 0, 'ko' => 0, 'ko_KR' => 0, 'ms' => 0,
-+            'ms_MY' => 0, 'th' => 0, 'th_TH' => 0, 'tr' => 0, 'tr_CY' => 0, 'tr_TR' => 0, 'vi' => 0,
-+            'vi_VN' => 0, 'zh' => 0, 'zh_CN' => 0, 'zh_HK' => 0, 'zh_SG' => 0, 'zh_TW' => 0,
-+            'af' => 1, 'af_ZA' => 1, 'bn' => 1, 'bn_BD' => 1, 'bn_IN' => 1, 'bg' => 1, 'bg_BG' => 1,
-+            'ca' => 1, 'ca_AD' => 1, 'ca_ES' => 1, 'ca_FR' => 1, 'ca_IT' => 1, 'da' => 1, 'da_DK' => 1,
-+            'de' => 1, 'de_AT' => 1, 'de_BE' => 1, 'de_CH' => 1, 'de_DE' => 1, 'de_LI' => 1, 'de_LU' => 1,
-+            'el' => 1, 'el_CY' => 1, 'el_GR' => 1, 'en' => 1, 'en_AG' => 1, 'en_AU' => 1, 'en_BW' => 1,
-+            'en_CA' => 1, 'en_DK' => 1, 'en_GB' => 1, 'en_HK' => 1, 'en_IE' => 1, 'en_IN' => 1, 'en_NG' => 1,
-+            'en_NZ' => 1, 'en_PH' => 1, 'en_SG' => 1, 'en_US' => 1, 'en_ZA' => 1, 'en_ZM' => 1, 'en_ZW' => 1,
-+            'eo' => 1, 'eo_US' => 1, 'es' => 1, 'es_AR' => 1, 'es_BO' => 1, 'es_CL' => 1, 'es_CO' => 1,
-+            'es_CR' => 1, 'es_CU' => 1, 'es_DO' => 1, 'es_EC' => 1, 'es_ES' => 1, 'es_GT' => 1, 'es_HN' => 1,
-+            'es_MX' => 1, 'es_NI' => 1, 'es_PA' => 1, 'es_PE' => 1, 'es_PR' => 1, 'es_PY' => 1, 'es_SV' => 1,
-+            'es_US' => 1, 'es_UY' => 1, 'es_VE' => 1, 'et' => 1, 'et_EE' => 1, 'eu' => 1, 'eu_ES' => 1,
-+            'eu_FR' => 1, 'fa' => 1, 'fa_IR' => 1, 'fi' => 1, 'fi_FI' => 1, 'fo' => 1, 'fo_FO' => 1,
-+            'fur' => 1, 'fur_IT' => 1, 'fy' => 1, 'fy_DE' => 1, 'fy_NL' => 1, 'gl' => 1, 'gl_ES' => 1,
-+            'gu' => 1, 'gu_IN' => 1, 'ha' => 1, 'ha_NG' => 1, 'he' => 1, 'he_IL' => 1, 'hu' => 1, 'hu_HU' => 1,
-+            'is' => 1, 'is_IS' => 1, 'it' => 1, 'it_CH' => 1, 'it_IT' => 1, 'ku' => 1, 'ku_TR' => 1,
-+            'lb' => 1, 'lb_LU' => 1, 'ml' => 1, 'ml_IN' => 1, 'mn' => 1, 'mn_MN' => 1, 'mr' => 1, 'mr_IN' => 1,
-+            'nah' => 1, 'nb' => 1, 'nb_NO' => 1, 'ne' => 1, 'ne_NP' => 1, 'nl' => 1, 'nl_AW' => 1,
-+            'nl_BE' => 1, 'nl_NL' => 1, 'nn' => 1, 'nn_NO' => 1, 'no' => 1, 'om' => 1, 'om_ET' => 1,
-+            'om_KE' => 1, 'or' => 1, 'or_IN' => 1, 'pa' => 1, 'pa_IN' => 1, 'pa_PK' => 1, 'pap' => 1,
-+            'pap_AN' => 1, 'pap_AW' => 1, 'pap_CW' => 1, 'ps' => 1, 'ps_AF' => 1, 'pt' => 1, 'pt_BR' => 1,
-+            'pt_PT' => 1, 'so' => 1, 'so_DJ' => 1, 'so_ET' => 1, 'so_KE' => 1, 'so_SO' => 1, 'sq' => 1,
-+            'sq_AL' => 1, 'sq_MK' => 1, 'sv' => 1, 'sv_FI' => 1, 'sv_SE' => 1, 'sw' => 1, 'sw_KE' => 1,
-+            'sw_TZ' => 1, 'ta' => 1, 'ta_IN' => 1, 'ta_LK' => 1, 'te' => 1, 'te_IN' => 1, 'tk' => 1,
-+            'tk_TM' => 1, 'ur' => 1, 'ur_IN' => 1, 'ur_PK' => 1, 'zu' => 1, 'zu_ZA' => 1,
-+            'am' => 2, 'am_ET' => 2, 'bh' => 2, 'fil' => 2, 'fil_PH' => 2, 'fr' => 2, 'fr_BE' => 2,
-+            'fr_CA' => 2, 'fr_CH' => 2, 'fr_FR' => 2, 'fr_LU' => 2, 'gun' => 2, 'hi' => 2, 'hi_IN' => 2,
-+            'hy' => 2, 'hy_AM' => 2, 'ln' => 2, 'ln_CD' => 2, 'mg' => 2, 'mg_MG' => 2, 'nso' => 2,
-+            'nso_ZA' => 2, 'ti' => 2, 'ti_ER' => 2, 'ti_ET' => 2, 'wa' => 2, 'wa_BE' => 2, 'xbr' => 2,
-+            'be' => 3, 'be_BY' => 3, 'bs' => 3, 'bs_BA' => 3, 'hr' => 3, 'hr_HR' => 3, 'ru' => 3,
-+            'ru_RU' => 3, 'ru_UA' => 3, 'sr' => 3, 'sr_ME' => 3, 'sr_RS' => 3, 'uk' => 3, 'uk_UA' => 3,
-+            'cs' => 4, 'cs_CZ' => 4, 'sk' => 4, 'sk_SK' => 4,
-+            'ga' => 5, 'ga_IE' => 5,
-+            'lt' => 6, 'lt_LT' => 6,
-+            'sl' => 7, 'sl_SI' => 7,
-+            'mk' => 8, 'mk_MK' => 8,
-+            'mt' => 9, 'mt_MT' => 9,
-+            'lv' => 10, 'lv_LV' => 10,
-+            'pl' => 11, 'pl_PL' => 11,
-+            'cy' => 12, 'cy_GB' => 12,
-+            'ro' => 13, 'ro_RO' => 13,
-+            'ar' => 14, 'ar_AE' => 14, 'ar_BH' => 14, 'ar_DZ' => 14, 'ar_EG' => 14, 'ar_IN' => 14,
-+            'ar_IQ' => 14, 'ar_JO' => 14, 'ar_KW' => 14, 'ar_LB' => 14, 'ar_LY' => 14, 'ar_MA' => 14,
-+            'ar_OM' => 14, 'ar_QA' => 14, 'ar_SA' => 14, 'ar_SD' => 14, 'ar_SS' => 14, 'ar_SY' => 14,
-+            'ar_TN' => 14, 'ar_YE' => 14,
-+        ];
-+
-+        $rule = $rules[$locale] ?? 0;
-+
-+        switch ($rule) {
-+            case 0: return 0;
-+            case 1: return ($number == 1) ? 0 : 1;
-+            case 2: return (($number == 0) || ($number == 1)) ? 0 : 1;
-+            case 3: return (($number % 10 == 1) && ($number % 100 != 11)) ? 0 : ((($number % 10 >= 2) && ($number % 10 <= 4) && (($number % 100 < 10) || ($number % 100 >= 20))) ? 1 : 2);
-+            case 4: return ($number == 1) ? 0 : ((($number >= 2) && ($number <= 4)) ? 1 : 2);
-+            case 5: return ($number == 1) ? 0 : (($number == 2) ? 1 : 2);
-+            case 6: return (($number % 10 == 1) && ($number % 100 != 11)) ? 0 : ((($number % 10 >= 2) && (($number % 100 < 10) || ($number % 100 >= 20))) ? 1 : 2);
-+            case 7: return ($number % 100 == 1) ? 0 : (($number % 100 == 2) ? 1 : ((($number % 100 == 3) || ($number % 100 == 4)) ? 2 : 3));
-+            case 8: return ($number % 10 == 1) ? 0 : 1;
-+            case 9: return ($number == 1) ? 0 : ((($number == 0) || (($number % 100 > 1) && ($number % 100 < 11))) ? 1 : ((($number % 100 > 10) && ($number % 100 < 20)) ? 2 : 3));
-+            case 10: return ($number == 0) ? 0 : ((($number % 10 == 1) && ($number % 100 != 11)) ? 1 : 2);
-+            case 11: return ($number == 1) ? 0 : ((($number % 10 >= 2) && ($number % 10 <= 4) && (($number % 100 < 12) || ($number % 100 > 14))) ? 1 : 2);
-+            case 12: return ($number == 1) ? 0 : (($number == 2) ? 1 : ((($number == 8) || ($number == 11)) ? 2 : 3));
-+            case 13: return ($number == 1) ? 0 : ((($number == 0) || (($number % 100 > 0) && ($number % 100 < 20))) ? 1 : 2);
-+            case 14: return ($number == 0) ? 0 : (($number == 1) ? 1 : (($number == 2) ? 2 : ((($number % 100 >= 3) && ($number % 100 <= 10)) ? 3 : ((($number % 100 >= 11) && ($number % 100 <= 99)) ? 4 : 5))));
-+            default: return 0;
++        if ($locale === 'az' || $locale === 'az_AZ' || $locale === 'bo' || $locale === 'bo_CN' || $locale === 'bo_IN' || $locale === 'dz' || $locale === 'dz_BT' || $locale === 'id' || $locale === 'id_ID' || $locale === 'ja' || $locale === 'ja_JP' || $locale === 'jv' || $locale === 'ka' || $locale === 'ka_GE' || $locale === 'km' || $locale === 'km_KH' || $locale === 'kn' || $locale === 'kn_IN' || $locale === 'ko' || $locale === 'ko_KR' || $locale === 'ms' || $locale === 'ms_MY' || $locale === 'th' || $locale === 'th_TH' || $locale === 'tr' || $locale === 'tr_TR' || $locale === 'vi' || $locale === 'vi_VN' || $locale === 'zh' || $locale === 'zh_CN' || $locale === 'zh_HK' || $locale === 'zh_SG' || $locale === 'zh_TW') {
++            return 0;
 +        }
++
++        if ($locale === 'af' || $locale === 'af_ZA' || $locale === 'bn' || $locale === 'bn_BD' || $locale === 'bn_IN' || $locale === 'bg' || $locale === 'bg_BG' || $locale === 'ca' || $locale === 'ca_AD' || $locale === 'ca_ES' || $locale === 'ca_FR' || $locale === 'ca_IT' || $locale === 'da' || $locale === 'da_DK' || $locale === 'de' || $locale === 'de_AT' || $locale === 'de_BE' || $locale === 'de_CH' || $locale === 'de_DE' || $locale === 'de_LI' || $locale === 'de_LU' || $locale === 'el' || $locale === 'el_CY' || $locale === 'el_GR' || $locale === 'en' || $locale === 'en_AG' || $locale === 'en_AU' || $locale === 'en_BW' || $locale === 'en_CA' || $locale === 'en_DK' || $locale === 'en_GB' || $locale === 'en_HK' || $locale === 'en_IE' || $locale === 'en_IN' || $locale === 'en_NG' || $locale === 'en_NZ' || $locale === 'en_PH' || $locale === 'en_SG' || $locale === 'en_US' || $locale === 'en_ZA' || $locale === 'en_ZM' || $locale === 'en_ZW' || $locale === 'eo' || $locale === 'eo_XX' || $locale === 'es' || $locale === 'es_AR' || $locale === 'es_BO' || $locale === 'es_CL' || $locale === 'es_CO' || $locale === 'es_CR' || $locale === 'es_CU' || $locale === 'es_DO' || $locale === 'es_EC' || $locale === 'es_ES' || $locale === 'es_GT' || $locale === 'es_HN' || $locale === 'es_MX' || $locale === 'es_NI' || $locale === 'es_PA' || $locale === 'es_PE' || $locale === 'es_PR' || $locale === 'es_PY' || $locale === 'es_SV' || $locale === 'es_US' || $locale === 'es_UY' || $locale === 'es_VE' || $locale === 'et' || $locale === 'et_EE' || $locale === 'eu' || $locale === 'eu_ES' || $locale === 'eu_FR' || $locale === 'fa' || $locale === 'fa_IR' || $locale === 'fi' || $locale === 'fi_FI' || $locale === 'fo' || $locale === 'fo_FO' || $locale === 'fur' || $locale === 'fur_IT' || $locale === 'fy' || $locale === 'fy_DE' || $locale === 'fy_NL' || $locale === 'gl' || $locale === 'gl_ES' || $locale === 'gu' || $locale === 'gu_IN' || $locale === 'ha' || $locale === 'ha_NG' || $locale === 'he' || $locale === 'he_IL' || $locale === 'hu' || $locale === 'hu_HU' || $locale === 'is' || $locale === 'is_IS' || $locale === 'it' || $locale === 'it_CH' || $locale === 'it_IT' || $locale === 'ku' || $locale === 'ku_TR' || $locale === 'lb' || $locale === 'lb_LU' || $locale === 'ml' || $locale === 'ml_IN' || $locale === 'mn' || $locale === 'mn_MN' || $locale === 'mr' || $locale === 'mr_IN' || $locale === 'nah' || $locale === 'nb' || $locale === 'nb_NO' || $locale === 'ne' || $locale === 'ne_NP' || $locale === 'nl' || $locale === 'nl_AW' || $locale === 'nl_BE' || $locale === 'nl_NL' || $locale === 'nn' || $locale === 'nn_NO' || $locale === 'no' || $locale === 'om' || $locale === 'om_ET' || $locale === 'om_KE' || $locale === 'or' || $locale === 'or_IN' || $locale === 'pa' || $locale === 'pa_IN' || $locale === 'pa_PK' || $locale === 'pap' || $locale === 'pap_AN' || $locale === 'pap_AW' || $locale === 'pap_CW' || $locale === 'ps' || $locale === 'ps_AF' || $locale === 'pt' || $locale === 'pt_BR' || $locale === 'pt_PT' || $locale === 'so' || $locale === 'so_DJ' || $locale === 'so_ET' || $locale === 'so_KE' || $locale === 'so_SO' || $locale === 'sq' || $locale === 'sq_AL' || $locale === 'sq_MK' || $locale === 'sv' || $locale === 'sv_FI' || $locale === 'sv_SE' || $locale === 'sw' || $locale === 'sw_KE' || $locale === 'sw_TZ' || $locale === 'ta' || $locale === 'ta_IN' || $locale === 'ta_LK' || $locale === 'te' || $locale === 'te_IN' || $locale === 'tk' || $locale === 'tk_TM' || $locale === 'ur' || $locale === 'ur_IN' || $locale === 'ur_PK' || $locale === 'zu' || $locale === 'zu_ZA') {
++            return ($number == 1) ? 0 : 1;
++        }
++
++        if ($locale === 'am' || $locale === 'am_ET' || $locale === 'bh' || $locale === 'fil' || $locale === 'fil_PH' || $locale === 'fr' || $locale === 'fr_BE' || $locale === 'fr_CA' || $locale === 'fr_CH' || $locale === 'fr_FR' || $locale === 'fr_LU' || $locale === 'gun' || $locale === 'hi' || $locale === 'hi_IN' || $locale === 'hy' || $locale === 'hy_AM' || $locale === 'ln' || $locale === 'ln_CD' || $locale === 'mg' || $locale === 'mg_MG' || $locale === 'nso' || $locale === 'nso_ZA' || $locale === 'ti' || $locale === 'ti_ER' || $locale === 'ti_ET' || $locale === 'wa' || $locale === 'wa_BE' || $locale === 'xbr') {
++            return (($number == 0) || ($number == 1)) ? 0 : 1;
++        }
++
++        if ($locale === 'be' || $locale === 'be_BY' || $locale === 'bs' || $locale === 'bs_BA' || $locale === 'hr' || $locale === 'hr_HR' || $locale === 'ru' || $locale === 'ru_RU' || $locale === 'ru_UA' || $locale === 'sr' || $locale === 'sr_ME' || $locale === 'sr_RS' || $locale === 'uk' || $locale === 'uk_UA') {
++            return (($number % 10 == 1) && ($number % 100 != 11)) ? 0 : ((($number % 10 >= 2) && ($number % 10 <= 4) && (($number % 100 < 10) || ($number % 100 >= 20))) ? 1 : 2);
++        }
++
++        if ($locale === 'cs' || $locale === 'cs_CZ' || $locale === 'sk' || $locale === 'sk_SK') {
++            return ($number == 1) ? 0 : ((($number >= 2) && ($number <= 4)) ? 1 : 2);
++        }
++
++        if ($locale === 'ga' || $locale === 'ga_IE') {
++            return ($number == 1) ? 0 : (($number == 2) ? 1 : 2);
++        }
++
++        if ($locale === 'lt' || $locale === 'lt_LT') {
++            return (($number % 10 == 1) && ($number % 100 != 11)) ? 0 : ((($number % 10 >= 2) && (($number % 100 < 10) || ($number % 100 >= 20))) ? 1 : 2);
++        }
++
++        if ($locale === 'sl' || $locale === 'sl_SI') {
++            return ($number % 100 == 1) ? 0 : (($number % 100 == 2) ? 1 : ((($number % 100 == 3) || ($number % 100 == 4)) ? 2 : 3));
++        }
++
++        if ($locale === 'mk' || $locale === 'mk_MK') {
++            return ($number % 10 == 1) ? 0 : 1;
++        }
++
++        if ($locale === 'mt' || $locale === 'mt_MT') {
++            return ($number == 1) ? 0 : ((($number == 0) || (($number % 100 > 1) && ($number % 100 < 11))) ? 1 : ((($number % 100 > 10) && ($number % 100 < 20)) ? 2 : 3));
++        }
++
++        if ($locale === 'lv' || $locale === 'lv_LV') {
++            return ($number == 0) ? 0 : ((($number % 10 == 1) && ($number % 100 != 11)) ? 1 : 2);
++        }
++
++        if ($locale === 'pl' || $locale === 'pl_PL') {
++            return ($number == 1) ? 0 : ((($number % 10 >= 2) && ($number % 10 <= 4) && (($number % 100 < 12) || ($number % 100 > 14))) ? 1 : 2);
++        }
++
++        if ($locale === 'cy' || $locale === 'cy_GB') {
++            return ($number == 1) ? 0 : (($number == 2) ? 1 : ((($number == 8) || ($number == 11)) ? 2 : 3));
++        }
++
++        if ($locale === 'ro' || $locale === 'ro_RO') {
++            return ($number == 1) ? 0 : ((($number == 0) || (($number % 100 > 0) && ($number % 100 < 20))) ? 1 : 2);
++        }
++
++        if ($locale === 'ar' || $locale === 'ar_AE' || $locale === 'ar_BH' || $locale === 'ar_DZ' || $locale === 'ar_EG' || $locale === 'ar_IN' || $locale === 'ar_IQ' || $locale === 'ar_JO' || $locale === 'ar_KW' || $locale === 'ar_LB' || $locale === 'ar_LY' || $locale === 'ar_MA' || $locale === 'ar_OM' || $locale === 'ar_QA' || $locale === 'ar_SA' || $locale === 'ar_SD' || $locale === 'ar_SY' || $locale === 'ar_TN' || $locale === 'ar_YE') {
++            return ($number == 0) ? 0 : (($number == 1) ? 1 : (($number == 2) ? 2 : ((($number % 100 >= 3) && ($number % 100 <= 10)) ? 3 : ((($number % 100 >= 11) && ($number % 100 <= 99)) ? 4 : 5))));
+         }
++
++        return 0;
      }
  }
