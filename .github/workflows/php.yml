@@ -32,6 +32,9 @@ jobs:
     - name: Generate key
       run: php artisan key:generate
 
+    - name: Convert Language .PHP files to JSON for encoding complexity
+      run: php convert_lang_to_json.php
+
     - name: Directory Permissions
       run: chmod -R 777 storage bootstrap/cache
 
